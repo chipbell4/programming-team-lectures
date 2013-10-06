@@ -34,28 +34,57 @@
 
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
-					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
-					</p>
-				</section>
+<?php
+/*
+ * See if a lecture was provided
+ */
 
-				<section>
-					<h2>Math Test</h2>
-					<p>
-						note that <br/>$x = y^2$
-					</p>
-				</section>
+if(! isset($_GET['lecture'])) {
+?>
+<section>
+	<h2>Programming Team Lectures</h2>
+	<p>
+		Hello! To view a lecture provide query parameter, like so:
+		<code>http://url.com/blah/blah/index.php?lecture=mm_dd</code>
+	</p>
+</section>
+<?php
+}
 
-				<section>
-					<h3>Code</h3>
-					<pre><code class='python'>
-print 'Hello World'
-''.join([ x**x for x in xrange(10) ])
-					</code></pre>
-				</section>
+// they provided a lecture, but the format is wrong
+else if(! preg_match('/\d\d_\d\d/', $_GET['lecture'])) {
+?>
+	<section>
+		<h2>Programming Team Lectures</h2>
+		<p>
+			Nice try! <?php echo $_GET['lecture']; ?> doesn't really look like a
+			date does it? Remember, <code>mm_dd</code> is the format to use (a date
+			essentially).
+		</p>
+	</section>
+<?php
+}
+
+// they matched the format
+else {
+	// check that they file exists
+	$file_name = 'lectures/' . $_GET['lecture'] . '.html';
+	if(file_exists($file_name)) {
+		require $file_name;
+	}
+	else {
+?>
+		<section>
+			<h2>Programming Team Lectures</h2>
+			<p>
+				Sorry, but there's not a lecture for <?php echo $_GET['lecture']; ?>.
+			</p>
+		</section>
+<?php		
+	}
+}
+
+?>
 			</div>
 		</div>
 
