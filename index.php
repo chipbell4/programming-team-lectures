@@ -40,13 +40,28 @@
  */
 
 if(! isset($_GET['lecture'])) {
+	$base_url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+	$files = array();
+	exec('ls lectures', $files);
+	$files = array_map(function($elem) {
+		$query_param = str_replace('.html', '', $elem);
+		list($month, $day) = explode('_', $query_param);
+		return array($query_param, "$month/$day");
+	}, $files);
 ?>
 <section>
 	<h2>Programming Team Lectures</h2>
 	<p>
-		Hello! To view a lecture provide query parameter, like so:
-		<code>http://url.com/blah/blah/index.php?lecture=mm_dd</code>
+		Hello! Here are our past lectures:
 	</p>
+	<ul>
+<?php
+	foreach($files as $index => $entry) {
+		list($query_param, $pretty_date) = $entry;
+		echo "<li><a href='$base_url?lecture=$query_param'>$pretty_date</a></li>\n";
+	}
+?>
+	</ul>
 </section>
 <?php
 }
