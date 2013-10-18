@@ -6,8 +6,8 @@
 
 		<title>Binary Bears Lectures</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Mercer Binary Bears Programming Team Lectures">
+		<meta name="author" content="Chip Bell">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
