@@ -41,6 +41,11 @@ class LectureController
         ];
     }
 
+    public function showLecture($lecture)
+    {
+        return $this->render("lectures/$lecture.html");
+    }
+
     /**
      * Called when no lecture provided
      */
