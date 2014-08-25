@@ -10,27 +10,13 @@ class LectureController
     }
 
     /**
-     * Lists all lectures
+     * Called when no lecture provided
      */
-    public function index()
+    public function badFormat($lecture)
     {
-        $lectures = $this->getAllLectures();
-        return $this->render('index.html', compact('lectures'));
+        return $this->render('bad-format.html', compact('lecture'));
     }
-
-    protected function getAllLectures()
-    {
-        $files = [];
-        exec('ls ' . $this->templateDir('lectures'), $files);
-
-        return array_map([$this, 'convertFileNameToTemplateData'], $files);
-    }
-
-    protected function templateDir($child_directory = '')
-    {
-        return __DIR__ . '/../templates/' . $child_directory;
-    }
-
+    
     protected function convertFileNameToTemplateData($filename)
     {
         $date = str_replace('.html', '', basename($filename));
@@ -39,6 +25,43 @@ class LectureController
             'query_param' => $date,
             'pretty_date' => "$month/$day/$year"
         ];
+    }
+    
+    protected function getAllLectures()
+    {
+        $files = [];
+        exec('ls ' . $this->templateDir('lectures'), $files);
+
+        return array_map([$this, 'convertFileNameToTemplateData'], $files);
+    }
+
+    /**
+     * Lists all lectures
+     */
+    public function index()
+    {
+        $lectures = $this->getAllLectures();
+        return $this->render('index.html', compact('lectures'));
+    }
+    
+    protected function isLectureFormat($lecture)
+    {
+        return preg_match('/^\d\d\d\d-\d\d-\d\d$/', $lecture);
+    }
+
+    protected function lectureExists($lecture)
+    {
+        return file_exists($this->templateDir("lectures/$lecture.html"));
+    }
+
+    public function lectureNotFound($lecture)
+    {
+        return $this->render('no-lecture.html', compact('lecture'));
+    }
+
+    protected function render($template_name, array $template_variables = [])
+    {
+        return $this->twig->render($template_name, $template_variables);
     }
 
     public function showLecture($lecture)
@@ -54,31 +77,8 @@ class LectureController
         return $this->render("lectures/$lecture.html");
     }
 
-    protected function isLectureFormat($lecture)
+    protected function templateDir($child_directory = '')
     {
-        return preg_match('/^\d\d\d\d-\d\d-\d\d$/', $lecture);
-    }
-
-    protected function lectureExists($lecture)
-    {
-        return file_exists($this->templateDir("lectures/$lecture.html"));
-    }
-
-    /**
-     * Called when no lecture provided
-     */
-    public function badFormat($lecture)
-    {
-        return $this->render('bad-format.html', compact('lecture'));
-    }
-
-    public function lectureNotFound($lecture)
-    {
-        return $this->render('no-lecture.html', compact('lecture'));
-    }
-
-    protected function render($template_name, array $template_variables = [])
-    {
-        return $this->twig->render($template_name, $template_variables);
+        return __DIR__ . '/../templates/' . $child_directory;
     }
 }
