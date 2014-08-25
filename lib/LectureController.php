@@ -43,7 +43,25 @@ class LectureController
 
     public function showLecture($lecture)
     {
+        if (!$this->isLectureFormat($lecture)) {
+            return $this->badFormat($lecture);
+        }
+
+        if (!$this->lectureExists($lecture)) {
+            return $this->lectureNotFound($lecture);
+        }
+
         return $this->render("lectures/$lecture.html");
+    }
+
+    protected function isLectureFormat($lecture)
+    {
+        return preg_match('/^\d\d\d\d-\d\d-\d\d$/', $lecture);
+    }
+
+    protected function lectureExists($lecture)
+    {
+        return file_exists($this->templateDir("lectures/$lecture.html"));
     }
 
     /**

@@ -9,4 +9,8 @@ $app->get('/', function() use ($controller) {
     echo $controller->index();
 });
 
+$app->get('/lectures/:lecture', function($lecture) use ($controller) {
+    echo $controller->showLecture($lecture);
+});
+
 $app->run();
