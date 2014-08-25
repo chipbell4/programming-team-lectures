@@ -9,9 +9,12 @@ class LectureController
         $this->twig = new Twig_Environment($loader);
     }
 
-    public function testIt()
+    /**
+     * Called when no lecture provided
+     */
+    public function badFormat($lecture)
     {
-        return $this->render('asdf', array());
+        return $this->render('bad-format.html', compact('lecture'));
     }
 
     protected function render($template_name, array $template_variables = [])
