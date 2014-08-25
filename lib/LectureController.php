@@ -54,6 +54,11 @@ class LectureController
         return $this->render('bad-format.html', compact('lecture'));
     }
 
+    public function lectureNotFound($lecture)
+    {
+        return $this->render('no-lecture.html', compact('lecture'));
+    }
+
     protected function render($template_name, array $template_variables = [])
     {
         return $this->twig->render($template_name, $template_variables);
