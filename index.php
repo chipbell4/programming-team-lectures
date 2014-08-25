@@ -45,8 +45,8 @@ if(! isset($_GET['lecture'])) {
 	exec('ls lectures', $files);
 	$files = array_map(function($elem) {
 		$query_param = str_replace('.html', '', $elem);
-		list($month, $day) = explode('_', $query_param);
-		return array($query_param, "$month/$day");
+		list($year, $month, $day) = explode('-', $query_param);
+		return array($query_param, "$month/$day/$year");
 	}, $files);
 ?>
 <section>
@@ -67,13 +67,13 @@ if(! isset($_GET['lecture'])) {
 }
 
 // they provided a lecture, but the format is wrong
-else if(! preg_match('/\d\d_\d\d/', $_GET['lecture'])) {
+else if(! preg_match('/\d\d\d\d-\d\d-\d\d/', $_GET['lecture'])) {
 ?>
 	<section>
 		<h2>Programming Team Lectures</h2>
 		<p>
 			Nice try! <?php echo $_GET['lecture']; ?> doesn't really look like a
-			date does it? Remember, <code>mm_dd</code> is the format to use (a date
+			date does it? Remember, <code>yyyy-mm-dd</code> is the format to use (a date
 			essentially).
 		</p>
 	</section>
