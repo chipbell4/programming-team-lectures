@@ -2,15 +2,10 @@
 
 require_once('../vendor/autoload.php');
 
-$app = new Slim\Slim();
 $controller = new LectureController();
 
-$app->get('/', function () use ($controller) {
+if (array_key_exists('lecture', $_GET)) {
+    echo $controller->showLecture($_GET['lecture']);
+} else {
     echo $controller->index();
-});
-
-$app->get('/:lecture', function ($lecture) use ($controller) {
-    echo $controller->showLecture($lecture);
-});
-
-$app->run();
+}
