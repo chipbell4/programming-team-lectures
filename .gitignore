@@ -6,3 +6,4 @@ node_modules/
 .sass-cache
 composer.lock
 vendor
+site.tar.gz
