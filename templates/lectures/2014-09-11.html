@@ -99,4 +99,64 @@ Please join! I post solutions, tips, and more.
 		</p>
 	</section>
 </section>
+<section id="examples">
+	<section>
+	<h6>Examples</h6>
+	<p>Here's an example to illustrate the point...</p>
+	</section>
+	<section>
+	<h6>Triangle Numbers</h6>
+	<p>
+	Triangle numbers are defined as $T(n) = \sum_{k=1}^{N} k$. If I give an $n$, calculate
+	$T(n)$.
+	</p>
+	<p>
+	<img src="http://www.browniebites.net/photos/whatdinner/sweets/challenge-accepted-rage-comic.jpg" width="200px"/>
+	</p>
+	</section>
+	<section>
+	<pre><code class="java">int N = 10;
+int total = 0;
+for(int i = 1; i <= N; i++) {
+	total += i;
+}
+System.out.println(total);
+	</code></pre> 
+	</section>
+	<section>
+		<h6>Easy right?</h6>
+		<ul>
+			<li>What if $n = 10^2$?</li>
+			<li>What if $n = 10^4$?</li>
+			<li>What if $n = 10^8$?</li>
+			<li>What if... You get the idea.</li>
+		</ul>
+		<p>What sort of things should we be considering?</p>
+	</section>
+	<section>
+	<ol>
+		<li>Truncation: When will we run out of space in a 32-bit integer</li>
+		<li>At what point will our algorithm be too slow (our current one is $O(n)$?</li>
+	</ol>
+	</section>
+	<section>
+		<h6>How can we do better?</h6>
+		<ul>
+			<li>Represent integers with more space:
+				<code>unsigned long</code> or perhaps <code>BigInteger</code>.
+				Python folks, carry on.
+			</li>
+			<li>
+				Find a closed form for this thing and get rid of the summation.
+				Anyone know the formula (and the story about Gauss?)
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h6>This is the formula</h6>
+		<p>
+			$T(n) = \frac{n (n+1) }{2}$
+		</p>
+	</section>
+</section>
 {% endblock %}
