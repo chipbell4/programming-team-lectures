@@ -113,6 +113,45 @@
 	</section>
 </section>
 <section id="lottery">
-	<h2>Lottery</h2>
+	<section>
+		<h2>Lottery</h2>
+		<p>
+			I like counting problems (now at least), but I first saw this one in a 
+			contest, it was daunting. However, with these types you just need to break
+			it into a recursive formula. That involves two parts:
+		</p>
+		<ul>
+			<li>Define a base case for the recursion. What's the simplest form of this
+			problem you can think of?
+			</li>
+			<li>Define the recurrence relationship for this problem, in a simple way that
+			breaks the problem down into <emph>a similar subproblem</emph>
+			</li>
+		</ul>
+	</section>
+	<section>
+		<h2>The Base Case</h2>
+		<p>The best way do this is to use small numbers in places, particularly 0's and 1's. Here's a couple of examples</p>
+		<ul>
+			<li>How many lucky lists are there if the total list length is 0?</li>
+			<li>Is there a lucky list if our range of numbers is of length $n$ and our index is $\gt n$?</li>
+			<li>Is there a lucky list if our range is up to $n$ and our index is $\le n$?</li>
+		</ul>
+	</section>
+	<section>
+		<h2>As a Formula</h2>
+		<p>
+		Let's define a function for our problem. What are our parameters?
+		</p>
+		<ul>
+			<li>$m$ The range of numbers we support</li>
+			<li>$n$ The number of numbers in our list</li>
+			<li>$k$ The lowest number we can start at. For the problem this is 1. When we break into subproblems we'll tweak it.</li>
+		</ul>
+		<p>
+			Now, our function $F(m, n, k)$ is the number of lottery lists of length 
+			$n$ using the numbers $k$ up to $m$.
+		</p>
+	</section>
 </section>
 {% endblock %}
