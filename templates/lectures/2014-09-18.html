@@ -130,15 +130,6 @@
 		</ul>
 	</section>
 	<section>
-		<h2>The Base Case</h2>
-		<p>The best way do this is to use small numbers in places, particularly 0's and 1's. Here's a couple of examples</p>
-		<ul>
-			<li>How many lucky lists are there if the total list length is 0?</li>
-			<li>Is there a lucky list if our range of numbers is of length $n$ and our index is $\gt n$?</li>
-			<li>Is there a lucky list if our range is up to $n$ and our index is $\le n$?</li>
-		</ul>
-	</section>
-	<section>
 		<h2>As a Formula</h2>
 		<p>
 		Let's define a function for our problem. What are our parameters?
@@ -153,5 +144,78 @@
 			$n$ using the numbers $k$ up to $m$.
 		</p>
 	</section>
+	<section>
+		<h2>The Base Case</h2>
+		<p>The best way do this is to use small numbers in places, particularly 0's and 1's. Here's a couple of examples</p>
+		<ul>
+			<li>How many lucky lists are there if the total list length is 0?</li>
+			<li>Is there a lucky list if our range of numbers is up to $m$ and $k \gt m$?</li>
+			<li>Is there a lucky list if the list length is $n = 1$ and our range is up to $m$ and our index is $k \le m$?</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Reformulate Our Base Case</h2>
+		<p>So our base cases can be rewritten:</p>
+		<ul>
+			<li>$F(m, 0, k) = 0$</li>
+			<li>$F(m, n, k) = 0, k \gt m$</li>
+			<li>$F(m, 1, k) = 1, k \le m$</li>
+		</ul>
+	</section>
+	<section>
+		<h2>Formulating recursively</h2>
+		<p>If we're in the function, at some $m, n, k$, and not at a base case, how
+		do we determine how many lotto's for this case are there?</p>
+		<p>We need to find a way to make this current case dependent on others</p>
+	</section>
+	<section>
+		<p>If we're at $(m, n, k)$ it means that we're putting $k$ into the lucky
+		lottery list. So, if $k$ is in the lucky lottery list, what could be the next value?</p>
+		<ul>
+			<li>$k+1$? No.</li>
+			<li>$k+2$? No.</li>
+			<li>$2k$? Yes, since that's how the list grows!</li>
+			<li>$2k+1$? Yes again. However, we need to make sure that we keep that 
+			value within bounds of $m$</li>
+		</ul>
+	</section>
+	<section>
+	<p>
+		So, we can write $F(m, n, k) = F(m, n-1, 2k) + F(m, n-1, 2k + 1) + \dots$
+	</p>
+	<p>
+		Note the $n - 1$ since we're using $k$ as one of the list elements. That
+		means we'll have $n - 1$ other elements to fill.
+	</p>
+	</section>
+	<section>
+		<h2>One Last Step</h2>
+		<p>
+		Our function is done, but we're going to optimize it a little. There could
+		be overlap in our recursive calls, where we might call the same $F(m, n, k)$
+		multiple times.
+		</p>
+		<p>
+		Depending on how bad the branching is, this could really slow down the recursion. So we need to never calculate something twice!
+		</p>
+		</section>
+		<section>
+			<h2>Enter Memoization</h2>
+			<p>
+			Memoization is essentially storing a table of values of a function
+			you've already calculated. Before calculating anything, you see if you've
+			ever calculated the value before.
+			</p>
+			<p>
+			If you have, just return the table's value
+			</p>
+			<p>
+			If you haven't, calculate it and put in the table, THEN return it.
+			</p>
+			<p>
+			This effectively converts a potentially expontential time algorithm
+			into linear.
+			</p>
+		</section>
 </section>
 {% endblock %}
