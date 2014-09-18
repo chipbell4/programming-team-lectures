@@ -10,7 +10,107 @@
 </ul>
 </section>
 <section id="pyramid">
-	<h2>Pyramid</h2>
+	<section>
+		<h2>Pyramid</h2>
+		<p>
+		In this problem you essentially needed to find a quick way to calculate elements of this sequence:
+		</p>
+		<p>
+			$P(n) = \sum_{k=1}^{n} T(k)$, or even more clean:
+		</p>
+		<br/>
+		<p>
+		$P(n) = \sum_{k=1}^{n} \sum_{j=1}^{k} j$
+		</p>
+	</section>
+	<section>
+		<h2>The Issues We Hit</h2>
+		<p>A reiteration</p>
+		<ul>
+			<li>The naive implementation would be $O(n^2)$.</li>
+			<li>Using plain integers would be bad since they would blow up. Sorry again, C++ folks. I should have bounded a little better</li>
+		</ul>
+	</section>
+	<section>
+		<h2>How to simplify?</h2>
+	</section>
+	<section>
+		<h4>Let's Compare $P(n)$ to $T(n)$</h4>
+		<table class="reveal">
+			<tr>
+				<th>$n$</th>
+				<th>$T(n)$</th>
+				<th>$P(n)$</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>6</td>
+				<td>10</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>10</td>
+				<td>20</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+	<h4>Let's throw in $\frac{P(n)}{T(n)}$</h4>
+		<style>tr { margin-bottom: 2em; }</style>
+		<table class="reveal">
+			<tr>
+				<th>$n$</th>
+				<th>$T(n)$</th>
+				<th>$P(n)$</th>
+				<th>$\frac{P(n)}{T(n)}$</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+				<td>1</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>$\frac{4}{3}$</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>6</td>
+				<td>10</td>
+				<td>$\frac{5}{3}$</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>10</td>
+				<td>20</td>
+				<td>2</td>
+			</tr>
+		</table>
+	</section>
+	<section>
+		<h3>And there's the pattern</h3>
+		<p>
+		Now we know $\frac{P(n)}{T(n)} = T(n)\frac{n+2}{3}$ and combine that
+		back into the formula for $T(n)$:
+		</p>
+		<br/>
+		<p>
+		$P(n) = \frac{n(n+1)(n+2)}{6}$
+		</p>
+	</section>
 </section>
 <section id="lottery">
 	<h2>Lottery</h2>
