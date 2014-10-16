@@ -63,5 +63,37 @@
 	<section>
 	<h2>Dynamic Programming</h2>
 	</section>
+	<section>
+		<p>
+		Dynamic programming is a method of solving problems by taking advantage of this <i>overlapping subproblems</i> (the
+		subproblem observation we just made) and <i>optimal substructure</i> (the optimal value relies on smaller
+		subproblems as a recurrence. We'll find that formula in a second).
+	</section>
+	<section>
+		<h3>What's the recurrence?</h3>
+		<p>First, let's define a function: Let $M(i, w)$ be the maximum value that can be attained with weight less than or equal
+		to $w$ using only up to the first $i$ items.</p>
+	</section>
+	<section>
+		<h4>The First case</h4>
+		<p>
+		If the current item at $i$ is too heavy to fit in the bag, we simply don't put it in the bag. As a formula:
+		$M(i, w) = M(i - 1, w)$ if $w_i \gt w$.
+	</section>
+	<section>
+		<h4>The Second case</h4>
+		<p>
+		Otherwise, take the better of taking item $i$ or not:
+		$M(i, w) = \max{ \left( M(i - 1, w), M(i - 1, w - w_i) + v_i \right) }$
+		You might want to study that second term...
+		</p>
+	</section>
+	<section>
+		<h3>The final solution</h3>
+		<p>
+		Now, we simply calculate $M(n, W)$ to get our final result. We can do this simply via a nested for-loop,
+		or via recursion.
+		</p>
+	</section>
 </section>
 {% endblock %}
