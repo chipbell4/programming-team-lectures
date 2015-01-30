@@ -1,5 +1,34 @@
 {% extends "layout.html" %}
 
 {% block content %}
-Hello world
+<section>
+    <h1>String Matching</h1>
+</section>
+<section>
+    <p>Given a word $W$ determine if $W$ occurs in a main text string $S$</p>
+</section>
+<section>
+    <p>What's the first, intuitive way that you would solve this problem?</p>
+</section>
+<section>
+    <p>Perhaps something like this?</p>
+<pre><code class="java">public boolean stringContains(String word, String mainText) {
+    // Untested, beware...
+    for(int i = 0; i &lt; mainText.length() - word.length(); i++) {
+        boolean allCharactersMatch = true;
+        for(int j = 0; j &lt; word.length(); j++) {
+            if(mainText.charAt(i + j) != word.charAt(j)) {
+                allCharactersMatch = false;
+                break; // break out of inner loop. j = word.length(); works too.
+            }
+        }
+
+        if(allCharactersMatch) {
+            return true;
+        }
+    }
+
+    return false;
+}</code></pre>
+</section>
 {% endblock %}
