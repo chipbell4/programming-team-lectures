@@ -31,4 +31,30 @@
     return false;
 }</code></pre>
 </section>
+<section>
+    <p>
+    What's this doing?
+    </p>
+</section>
+<section>
+    <section>
+        <p>This tries to "align" $W$ (called word here) by scooting it along $S$ (called mainText here) and checking if all the
+        characters match. For instance, let $W = cat$ and $S = cacat$. The first step of the outer loop would look something like
+        <pre>cacat
+cat</pre>
+        <p>Which would not match</p>
+    </section>
+    <section>
+        <p>The second loop would be</p>
+        <pre>cacat
+ cat</pre>
+        <p>(No match)</p>
+    </section>
+    <section>
+        <p>And the third</p>
+        <pre>cacat
+  cat</pre>
+        <p>Which would match</p>
+    </section>
+</section>
 {% endblock %}
