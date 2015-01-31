@@ -103,11 +103,59 @@ cat</pre>
         <p>We can actually do this in linear time: $O(n)$.
     </section>
     <section>
-        <p>Check out the [Knuth-Morris-Pratt Algorithm](http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm).</p>
+    <p>
+    Check out <a href="http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm)">Knuth-Morris-Pratt Algorithm</a>.
+    </p>
         <p>
             Basic Idea: The naive solution jumps back to the beginning and starts over if there's a mismatch. KMP
             instead builds a table up-front (in linear-time) that tells your algorithm WHERE in the mainText to jump back to.
+            See <a href="http://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm#.22Partial_match.22_table_.28also_known_as_.22failure_function.22.29">here</a>.
+            </p>
     </section>
+    <section>
+        <p>For instance let's say your performing the following match in our naive algorithm:</p>
+        <pre>cacacab
+cacat</pre>
+        <p>
+        On the mismatch on the t and c, the naive algorithm would slide the small word over, one character and start
+        over. KMP would instead move the string over enough characters to skip already known matches. So, the next
+        position would be
+        </p>
+        <pre>cacacab
+  cacab</pre>
+        <p>(Notice we skipped ahead by 2)</p>
     </section>
-    http://hg.openjdk.java.net/jdk7u/jdk7u6/jdk/file/8c2c5d63a17e/src/share/classes/java/lang/String.java#l1715
+</section>
+<section>
+    <section>
+        <h3>In Practice do you code this, or is it built-in?</h3>
+    </section>
+    <section>
+        <h5>Java</h5>
+        <p>
+            The String class' implementation of
+            <a href="http://hg.openjdk.java.net/jdk7u/jdk7u6/jdk/file/8c2c5d63a17e/src/share/classes/java/lang/String.java#l1715">indexOf</a>
+            uses a modified form of the naive algorithm, so this would break down quickly.
+        </p>
+    </section>
+    <section>
+        <p>
+            Python, however kicks ass and has it built-in:
+<pre><code class="python">dna = 'CGATGATTAGACGACGATGAGATATTCGATCG'
+gene = 'CGATGTGT'
+if gene in dna:
+    print('Win')
+else:
+    print('Still win, because Python')</code></pre>
+        </p>
+    </section>
+</section>
+<section>
+    <p>Lesson Learned?</p>
+    <ul>
+        <li>Find an implementation in your language of choice OR</li>
+        <li>Use a language that has it built-in</li>
+        <li>Learn how to spot places where the string match will break down. The cases are easy to spot</li>
+    </ul>
+</section>
 {% endblock %}
