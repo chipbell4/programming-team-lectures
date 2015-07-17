@@ -123,10 +123,6 @@ class LectureController
      */
     public function showLecture($lecture)
     {
-        if (!$this->isLectureFormat($lecture)) {
-            return $this->badFormat($lecture);
-        }
-
         if (!$this->lectureExists($lecture)) {
             return $this->lectureNotFound($lecture);
         }
