@@ -123,4 +123,62 @@
         </ul>
     </section>
 </section>
+<section>
+    <section>
+        <h1>Debugging Problems</h1>
+    </section>
+    <section>
+        <h2>Types of Incorrect Solutions</h2>
+        <ul>
+            <li><i>Compile error</i> - Your code didn't compile</li>
+            <li><i>Presentation Error</i> - Your output looked right, but there were some formatting issues</li>
+            <li><i>Runtime Error</i> - An error occurred while your program was running</li>
+            <li><i>Time Limit Exceeded</i> - Your program took too long to finish</li>
+            <li><i>Wrong Answer</i> - You got the wrong answer...</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Mistakes You Shouldn't Make</h2>
+        <ul>
+            <li>Your code should <b>always compile</b>.</li>
+            <li>Your code should <b>never have presentation errors</b>. </li>
+            <li>These mistakes are generally caused by not paying attention, and not real programming error</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Runtime Errors</h2>
+        <ul>
+            <li>Generally caused by <b>array indexing issues</b> (but not always).</li>
+            <li>Look for where you might be indexing an array and see if there's a way it could go too high</li>
+            <li>Try harder cases and see if you can <b>replicate the issue</b></li>
+        </ul>
+    </section>
+    <section>
+        <h2>Time Limit Exceeded</h2>
+        <ul>
+            <li>This generally means <b>your algorithm is inefficient</b>. Rethink it a little.</li>
+            <li>It could also means there's <b>an infinite loop somewhere</b>. Make sure there's not weird case like that</li>
+            <li>Try harder cases and see if you can <b>replicate the issue</b>.</li>
+        </ul>
+    </section>
+    <section>
+        <h2>Wrong Answer</h2>
+        <ul>
+            <li>It's not very descriptive, but it looks like <b>your algorithm is incorrect</b>.</li>
+            <li>Try different cases, especially ones you know the answer to and try to <b>replicate the issue</b></li>
+            <li>This is <b>the most frustrating part</b>. Really think about the problem. Think about edge cases, large cases, small cases, everything!</li>
+        </ul>
+    </section>
+    <section id="doubling">
+        <h2>Exercise (Edge Cases)</h2>  
+        <p>In the previous problem, I didn't specify limits on the numbers. In general, a problem will specify limits and those limits are very important.
+        For instance, let's say for the first problem the positive integer could be up to 100. Can your problem handle that case? What if the number were 2147483647?
+        What will your solution say? What <b>should it say</b>? What about 2147483648?</p>
+        <p>Fix your code to pass those cases.</p>
+        <p>Next, why did I choose those particular numbers? I assure you that judges will!</p>
+    </section>
+</section>
+<section>
+    <h1>Problem Set</h1>
+</section>
 {% endblock %}
